@@ -1,3 +1,10 @@
+import {
+    Editable,
+    EditableInput,
+    EditableTextarea,
+    EditablePreview,
+  } from '@chakra-ui/react'
+
 const getTasks =  async() => {
     try {
         
@@ -20,10 +27,15 @@ export default async function Navbar(){
     return (
         <>
         {tasks.map((task: any) => (
-            <div key={task.id}>
-                <h1>{task.title}</h1>
-                <p>{task.status}</p>
-            </div>
+            // <div key={task.id}>
+            //     <h1>{task.title}</h1>
+            //     <p>{task.status}</p>
+            // </div>
+            // Click the text to edit
+            <Editable defaultValue={task.title} key={task.id}>
+            <EditablePreview />
+            <EditableInput />
+            </Editable>
         ))}
         </>
     )
