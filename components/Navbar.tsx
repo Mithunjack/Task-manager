@@ -1,42 +1,23 @@
-import {
-    Editable,
-    EditableInput,
-    EditableTextarea,
-    EditablePreview,
-  } from '@chakra-ui/react'
-
-const getTasks =  async() => {
-    try {
-        
-        const res = await fetch('http://localhost:3000/api/tasks/', {
-            cache: "no-store",
-        })
-        if(!res.ok){
-            throw new Error("Failed to fetch topics")
-        }
-
-        return res.json();
-    }
-    catch(error){
-        console.log(error);
-    }
-}
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 
 export default async function Navbar(){
-    const tasks =  await getTasks();
-    return (
+    
+ return (
         <>
-        {tasks.map((task: any) => (
-            // <div key={task.id}>
-            //     <h1>{task.title}</h1>
-            //     <p>{task.status}</p>
-            // </div>
-            // Click the text to edit
-            <Editable defaultValue={task.title} key={task.id}>
-            <EditablePreview />
-            <EditableInput />
-            </Editable>
-        ))}
+            <Tabs variant='enclosed'>
+                <TabList>
+                    <Tab>One</Tab>
+                    <Tab>Two</Tab>
+                </TabList>
+                <TabPanels>
+                    <TabPanel>
+                    <p>one!</p>
+                    </TabPanel>
+                    <TabPanel>
+                    <p>two!</p>
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
         </>
     )
 }
